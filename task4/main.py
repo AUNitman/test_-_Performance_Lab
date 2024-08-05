@@ -1,4 +1,5 @@
-file_name = input()
+import sys
+file_name = sys.argv[1]
 # file_name = './task4/test.txt'
 
 with open(file_name, 'r') as f:

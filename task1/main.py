@@ -1,3 +1,5 @@
+import sys
+
 
 def find_way_on_array(n: int, m: int):
 
@@ -20,8 +22,7 @@ def find_way_on_array(n: int, m: int):
     return int(''.join(map(str, path)))
 
 
-inp = input().split(' ')
-n = int(inp[0])
-m = int(inp[1])
+n = int(sys.argv[1])
+m = int(sys.argv[2])
 
 print(find_way_on_array(n, m))

@@ -1,5 +1,6 @@
-file_name1 = input()
-file_name2 = input()
+import sys
+file_name1 = sys.argv[1]
+file_name2 = sys.argv[2]
 
 # file_name1 = './task2/file1.txt'
 # file_name2 = './task2/file2.txt'
