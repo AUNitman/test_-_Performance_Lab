@@ -1,5 +1,5 @@
-# file_name = input()
-file_name = 'test.txt'
+file_name = input()
+# file_name = 'test.txt'
 
 with open("./task4/" + file_name, 'r') as f:
     numbers = [int(num.strip()) for num in f]
