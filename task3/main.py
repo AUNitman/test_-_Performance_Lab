@@ -1,26 +1,34 @@
-file_name1 = input()
-file_name2 = input()
+import json
+import sys
 
-# file_name1 = './task3/file1.txt'
-# file_name2 = './task3/file2.txt'
+file1_input = sys.argv[1]
+file2_input = sys.argv[2]
+file_output = sys.argv[3]
 
-with open(file_name1, 'r') as f1:
-    array1 = f1.read()
+# file1_input = './task3/values.json'
+# file2_input = './task3/tests.json'
+# file_output = './task3/report.json'
 
-with open(file_name2, 'r') as f2:
-    array2 = f2.read()
 
-array1 = [float(i) for i in array1.split()]
-array2 = [float(i) for i in array2.split()]
-r = array1[2]
+def read_json(file_input):
+    with open(file1_input, 'r') as f:
+        return json.load(f)
 
-for i in range(0, len(array2) - 1, 2):
-    distance = (array2[i] - array1[0]) ** 2 + (array2[i + 1] - array1[1]) ** 2
-    r_quad = r * r
 
-    if r_quad > distance:
-        print(1)
-    elif r_quad == distance:
-        print(0)
-    else:
-        print(2)
+def get_report_structure(test, values):
+    if isinstance(test, dict):
+        for key, value in test.items():
+            if key == 'id' and value in values:
+                test['value'] = value
+            else:
+                get_report_structure(item, value)
+    elif isinstance(test, list):
+        for item in test:
+            get_report_structure(item, values)
+
+
+values = read_json(file1_input)
+test = read_json(file2_input)
+
+with open(file_output, 'w') as output:
+    json.dump(test, output)
